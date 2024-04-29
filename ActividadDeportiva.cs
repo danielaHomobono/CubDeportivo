@@ -8,12 +8,25 @@ namespace ClubDeportivo
 {
     internal class ActividadDeportiva
     {
-        public string Nombre { get; set; }
-        public int Cupos { get; set; }
+        private string nombre;
+        private int cupos;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public int Cupos
+        {
+            get { return cupos; }
+            set { cupos = value; }
+        }
+
         public ActividadDeportiva(string nombre, int cupos)
         {
-            Nombre = nombre;
-            Cupos = cupos;
+            this.Nombre = nombre;
+            this.Cupos = cupos;
         }
     }
 }

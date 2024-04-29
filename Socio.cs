@@ -8,17 +8,27 @@ namespace ClubDeportivo
 {
     internal class Socio
     {
-        public string Nombre { get; set; }
-        public int IdIdentificacion { get; set; }
+        private string nombre;
+        private int idIdentificacion;
         public List<ActividadDeportiva> Actividades { get; set; }
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public int IdIdentificacion
+        {
+            get { return idIdentificacion; }
+            set { idIdentificacion = value; }
+        }
 
         public Socio(string nombre, int idIdentificacion)
         {
-            Nombre = nombre;
-            IdIdentificacion = idIdentificacion;
+            this.Nombre = nombre;
+            this.IdIdentificacion = idIdentificacion;
             Actividades = new List<ActividadDeportiva>();
-
         }
-
     }
 }
