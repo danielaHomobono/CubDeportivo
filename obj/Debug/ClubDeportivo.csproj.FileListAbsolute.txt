@@ -1,0 +1,7 @@
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\bin\Debug\ClubDeportivo.exe.config
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\bin\Debug\ClubDeportivo.exe
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\bin\Debug\ClubDeportivo.pdb
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\obj\Debug\ClubDeportivo.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\obj\Debug\ClubDeportivo.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\obj\Debug\ClubDeportivo.exe
+C:\Users\Usuario\source\repos\ClubDeportivo\ClubDeportivo\obj\Debug\ClubDeportivo.pdb
