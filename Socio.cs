@@ -9,26 +9,61 @@ namespace ClubDeportivo
     internal class Socio
     {
         private string nombre;
-        private int idIdentificacion;
-        public List<ActividadDeportiva> Actividades { get; set; }
+        private int numeroIdentificacion;
+        private DateTime fechaVencimientoCuota;
+        private List<ActividadDeportiva> actividadesInscritas;
 
-        public string Nombre
+        public Socio(string nombre, int numeroIdentificacion, DateTime fechaVencimientoCuota)
         {
-            get { return nombre; }
-            set { nombre = value; }
+            this.nombre = nombre;
+            this.numeroIdentificacion = numeroIdentificacion;
+            this.fechaVencimientoCuota = fechaVencimientoCuota;
+            this.actividadesInscritas = new List<ActividadDeportiva>();
         }
 
-        public int IdIdentificacion
+        public string GetNombre()
         {
-            get { return idIdentificacion; }
-            set { idIdentificacion = value; }
+            return nombre;
         }
 
-        public Socio(string nombre, int idIdentificacion)
+        public void SetNombre(string nombre)
         {
-            this.Nombre = nombre;
-            this.IdIdentificacion = idIdentificacion;
-            Actividades = new List<ActividadDeportiva>();
+            this.nombre = nombre;
+        }
+
+        public int GetNumeroIdentificacion()
+        {
+            return numeroIdentificacion;
+        }
+
+        public void SetNumeroIdentificacion(int numeroIdentificacion)
+        {
+            this.numeroIdentificacion = numeroIdentificacion;
+        }
+
+        public DateTime GetFechaVencimientoCuota()
+        {
+            return fechaVencimientoCuota;
+        }
+
+        public void SetFechaVencimientoCuota(DateTime fechaVencimientoCuota)
+        {
+            this.fechaVencimientoCuota = fechaVencimientoCuota;
+        }
+
+        public List<ActividadDeportiva> GetActividadesInscritas()
+        {
+            return actividadesInscritas;
+        }
+
+        public void InscribirActividad(ActividadDeportiva actividad)
+        {
+            actividadesInscritas.Add(actividad);
+        }
+
+        public bool CuotaVencida()
+        {
+            return DateTime.Today > fechaVencimientoCuota;
         }
     }
 }

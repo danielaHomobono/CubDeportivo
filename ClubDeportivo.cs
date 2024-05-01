@@ -8,61 +8,88 @@ namespace ClubDeportivo
 {
     internal class ClubDeportivo
     {
-        public List<Socio> Socios { get; set; }
-        public List<ActividadDeportiva> Actividades { get; set; }
+        private List<Socio> socios;
+        private List<ActividadDeportiva> actividades;
 
         public ClubDeportivo()
         {
-            Socios = new List<Socio>();
-            Actividades = new List<ActividadDeportiva>();
+            socios = new List<Socio>();
+            actividades = new List<ActividadDeportiva>();
         }
 
-        public string altaSocio(string nombre, int idIdentificacion)
+        // Agregamos una nueva actividad deportiva al club
+        public void AgregarActividad(string nombre, int cuposDisponibles)
         {
-            if (Socios.Exists(s => s.IdIdentificacion == idIdentificacion))
+            actividades.Add(new ActividadDeportiva(nombre, cuposDisponibles));
+        }
+
+        // Obtenemos lista de socios
+        public List<Socio> ObtenerSocios()
+        {
+            return socios;
+        }
+
+        // Obtenemos la lista de actividades deportivas
+        public List<ActividadDeportiva> ObtenerActividades()
+        {
+            return actividades;
+        }
+
+        // Buscamos un socio por su número de identificación
+        private Socio BuscarSocio(int numeroIdentificacion)
+        {
+            foreach (Socio socio in socios)
             {
-                return "El socio ya se encuentra registrado.";
+                if (socio.GetNumeroIdentificacion() == numeroIdentificacion)
+                {
+                    return socio;
+                }
+            }
+            return null;
+        }
+
+        // Registramos a un nuevo socio 
+        public bool AltaSocio(string nombre, int numeroIdentificacion, DateTime fechaVencimientoCuota)
+        {
+            if (BuscarSocio(numeroIdentificacion) != null)
+            {
+                return false; // El socio ya se encuentra registrado
             }
             else
             {
-                // Agregamos un nuevo socio a nuestra lista de socios
-                Socios.Add(new Socio(nombre, idIdentificacion));
-                return "Socio registrado exitosamente.";
+                socios.Add(new Socio(nombre, numeroIdentificacion, fechaVencimientoCuota));
+                return true; // Socio registrado exitosamente
             }
         }
-        public string inscribirActividad(string nombreActividad, int idSocio)
+
+        // Inscribimos a un socio en una actividad deportiva
+        public string InscribirActividad(string nombreActividad, int numeroIdentificacionSocio)
         {
-            // Buscar al socio 
-            Socio socio = Socios.Find(s => s.IdIdentificacion== idSocio);
+            Socio socio = BuscarSocio(numeroIdentificacionSocio);
             if (socio == null)
             {
-                return "SOCIO INEXISTENTE";
+                return "SOCIO INEXISTENTE"; 
             }
 
-            // Ya se inscribió a 3 actividades?
-            if (socio.Actividades.Count >= 3)
+            if (socio.GetActividadesInscritas().Count >= 3)
             {
-                return "TOPE DE ACTIVIDADES ALCANZADO";
+                return "TOPE DE ACTIVIDADES ALCANZADO"; 
             }
-            
 
-            // Buscamos la actividad por nombre
-            ActividadDeportiva actividad = Actividades.Find(a => a.Nombre == nombreActividad);
+            ActividadDeportiva actividad = actividades.Find(a => a.GetNombre() == nombreActividad);
             if (actividad == null)
             {
-                return "ACTIVIDAD INEXISTENTE";
+                return "ACTIVIDAD INEXISTENTE"; 
             }
-            if (actividad.Cupos <= 0)
+
+            if (actividad.GetCuposDisponibles() <= 0)
             {
-                return "No hay cupos disponibles para esta actividad.";
+                return "No hay cupos disponibles para esta actividad."; 
             }
 
-            // Inscribimosal socio en la actividad y decrementamos los cupos disponibles con--
-            socio.Actividades.Add(actividad);
-            actividad.Cupos--;
-
-            return "INSCRIPCIÓN EXITOSA";
+            socio.InscribirActividad(actividad);
+            actividad.SetCuposDisponibles(actividad.GetCuposDisponibles() - 1);
+            return "INSCRIPCIÓN EXITOSA"; 
         }
-
     }
 }

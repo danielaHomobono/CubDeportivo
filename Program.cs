@@ -7,46 +7,43 @@ using System.Threading.Tasks;
 
 
 namespace ClubDeportivo
+{
+    class Program
     {
-        class Program
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
+            ClubDeportivo club = new ClubDeportivo();
+
+            // Agregar algunos socios
+            club.AltaSocio("Juan", 12345, DateTime.Today.AddDays(30));
+            club.AltaSocio("María", 67890, DateTime.Today.AddDays(-10));
+
+            // Agregar algunas actividades deportivas
+            club.AgregarActividad("Natación", 20);
+            club.AgregarActividad("Fútbol", 30);
+
+            // Mostrar información de los socios
+            Console.WriteLine("Socios:");
+            foreach (Socio socio in club.ObtenerSocios())
             {
-               
-                ClubDeportivo club = new ClubDeportivo();
+                Console.WriteLine($"Nombre: {socio.GetNombre()}, Identificación: {socio.GetNumeroIdentificacion()}, Cuota vencida: {socio.CuotaVencida()}");
+            }
 
-                
+            // Inscribir a un socio en una actividad deportiva
+            int numeroIdentificacion = 12345; // Número de identificación del socio
+            string nombreActividad = "Fútbol"; // Nombre de la actividad deportiva
+            string resultado = club.InscribirActividad(nombreActividad, numeroIdentificacion);
+            Console.WriteLine(resultado);
 
-                // Alta de socios
-                Console.WriteLine(club.altaSocio("Juan Pérez", 1001)); // Agregar un socio nuevo
-                Console.WriteLine(club.altaSocio("María López", 1002)); // Agregar otro socio nuevo
-                Console.WriteLine(club.altaSocio("Juan Pérez", 1001)); // Intentar agregar el mismo socio nuevamente
-
-                // Inscripción en actividades
-                Console.WriteLine(club.inscribirActividad("Fútbol", 1001)); // Inscribir a Juan Pérez en una actividad
-                Console.WriteLine(club.inscribirActividad("Natación", 1002)); // Inscribir a María López en otra actividad
-
-                // Mostrar información
-                Console.WriteLine("---- Lista de socios ----");
-                foreach (Socio socio in club.Socios)
-                {
-                    Console.WriteLine($"Nombre: {socio.Nombre}, ID: {socio.IdIdentificacion}");
-                }
-
-                Console.WriteLine("---- Actividades deportivas ----");
-                foreach (ActividadDeportiva actividad in club.Actividades)
-                {
-                    Console.WriteLine($"Nombre: {actividad.Nombre}, Cupos disponibles: {actividad.Cupos}");
-                }
-
-               
-                Console.WriteLine("Presiona Enter para salir...");
-                Console.ReadLine();
+            // Mostrar información de las actividades deportivas
+            Console.WriteLine("Actividades Deportivas:");
+            foreach (ActividadDeportiva actividad in club.ObtenerActividades())
+            {
+                Console.WriteLine($"Nombre: {actividad.GetNombre()}, Cupos Disponibles: {actividad.GetCuposDisponibles()}");
             }
         }
     }
-
-
+}
 
 
 
