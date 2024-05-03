@@ -21,19 +21,19 @@ namespace ClubDeportivo
             // Agregar algunas actividades deportivas
             club.AgregarActividad("Natación", 20);
             club.AgregarActividad("Fútbol", 30);
-            Console.WriteLine(club.InscribirActividad("Natación", 1001)); // Debería mostrar "INSCRIPCIÓN EXITOSA"
+            Console.WriteLine(club.InscribirActividad("Natación", 1001)); // "INSCRIPCIÓN EXITOSA"
 
             // Intentar inscribir al socio en una actividad inexistente
-            Console.WriteLine(club.InscribirActividad("Tenis", 1001)); // Debería mostrar "ACTIVIDAD INEXISTENTE"
+            Console.WriteLine(club.InscribirActividad("Tenis", 1001)); // "ACTIVIDAD INEXISTENTE"
 
             // Inscribir al socio en una segunda actividad
-            Console.WriteLine(club.InscribirActividad("Fútbol", 1001)); // Debería mostrar "INSCRIPCIÓN EXITOSA"
+            Console.WriteLine(club.InscribirActividad("Fútbol", 1001)); // "INSCRIPCIÓN EXITOSA"
 
             // Intentar inscribir al socio en una tercera actividad
-            Console.WriteLine(club.InscribirActividad("Baloncesto", 1001)); // Debería mostrar "TOPE DE ACTIVIDADES ALCANZADO"
+            Console.WriteLine(club.InscribirActividad("Baloncesto", 1001)); //  "TOPE DE ACTIVIDADES ALCANZADO"
 
             // Intentar inscribir a un socio inexistente
-            Console.WriteLine(club.InscribirActividad("Natación", 1002)); // Debería mostrar "SOCIO INEXISTENTE"
+            Console.WriteLine(club.InscribirActividad("Natación", 1002)); // "SOCIO INEXISTENTE"
 
             // Mostrar la lista de socios del club
             Console.WriteLine("\nLista de Socios:");
@@ -42,7 +42,7 @@ namespace ClubDeportivo
                 Console.WriteLine($"Nombre: {socio.GetNombre()}, ID: {socio.GetNumeroIdentificacion()}, Cuota Vencida: {socio.CuotaVencida()}");
             }
 
-            // Mostrar la lista de actividades del club
+            // lista de actividades del club
             Console.WriteLine("\nLista de Actividades:");
             foreach (var actividad in club.ObtenerActividades())
             {

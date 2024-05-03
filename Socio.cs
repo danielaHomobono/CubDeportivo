@@ -45,7 +45,7 @@ namespace ClubDeportivo
         {
             return fechaVencimientoCuota;
         }
-
+        // le agregamos la funcionalidad de fecha de vencimiento de cuota.
         public void SetFechaVencimientoCuota(DateTime fechaVencimientoCuota)
         {
             this.fechaVencimientoCuota = fechaVencimientoCuota;

@@ -62,7 +62,7 @@ namespace ClubDeportivo
             }
         }
 
-        // Inscribimos a un socio en una actividad deportiva
+      
         // Inscribimos a un socio en una actividad deportiva
         public string InscribirActividad(string nombreActividad, int numeroIdentificacionSocio)
         {
