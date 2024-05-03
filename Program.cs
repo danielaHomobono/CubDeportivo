@@ -15,35 +15,46 @@ namespace ClubDeportivo
             ClubDeportivo club = new ClubDeportivo();
 
             // Agregar algunos socios
-            club.AltaSocio("Juan", 12345, DateTime.Today.AddDays(30));
+             club.AltaSocio("Juan", 12345, DateTime.Today.AddDays(30));
             club.AltaSocio("María", 67890, DateTime.Today.AddDays(-10));
-
+            club.AltaSocio("Juan", 1001, DateTime.Today.AddDays(30));
             // Agregar algunas actividades deportivas
             club.AgregarActividad("Natación", 20);
             club.AgregarActividad("Fútbol", 30);
+            Console.WriteLine(club.InscribirActividad("Natación", 1001)); // Debería mostrar "INSCRIPCIÓN EXITOSA"
 
-            // Mostrar información de los socios
-            Console.WriteLine("Socios:");
-            foreach (Socio socio in club.ObtenerSocios())
+            // Intentar inscribir al socio en una actividad inexistente
+            Console.WriteLine(club.InscribirActividad("Tenis", 1001)); // Debería mostrar "ACTIVIDAD INEXISTENTE"
+
+            // Inscribir al socio en una segunda actividad
+            Console.WriteLine(club.InscribirActividad("Fútbol", 1001)); // Debería mostrar "INSCRIPCIÓN EXITOSA"
+
+            // Intentar inscribir al socio en una tercera actividad
+            Console.WriteLine(club.InscribirActividad("Baloncesto", 1001)); // Debería mostrar "TOPE DE ACTIVIDADES ALCANZADO"
+
+            // Intentar inscribir a un socio inexistente
+            Console.WriteLine(club.InscribirActividad("Natación", 1002)); // Debería mostrar "SOCIO INEXISTENTE"
+
+            // Mostrar la lista de socios del club
+            Console.WriteLine("\nLista de Socios:");
+            foreach (var socio in club.ObtenerSocios())
             {
-                Console.WriteLine($"Nombre: {socio.GetNombre()}, Identificación: {socio.GetNumeroIdentificacion()}, Cuota vencida: {socio.CuotaVencida()}");
+                Console.WriteLine($"Nombre: {socio.GetNombre()}, ID: {socio.GetNumeroIdentificacion()}, Cuota Vencida: {socio.CuotaVencida()}");
             }
 
-            // Inscribir a un socio en una actividad deportiva
-            int numeroIdentificacion = 12345; // Número de identificación del socio
-            string nombreActividad = "Fútbol"; // Nombre de la actividad deportiva
-            string resultado = club.InscribirActividad(nombreActividad, numeroIdentificacion);
-            Console.WriteLine(resultado);
-
-            // Mostrar información de las actividades deportivas
-            Console.WriteLine("Actividades Deportivas:");
-            foreach (ActividadDeportiva actividad in club.ObtenerActividades())
+            // Mostrar la lista de actividades del club
+            Console.WriteLine("\nLista de Actividades:");
+            foreach (var actividad in club.ObtenerActividades())
             {
                 Console.WriteLine($"Nombre: {actividad.GetNombre()}, Cupos Disponibles: {actividad.GetCuposDisponibles()}");
             }
         }
     }
 }
+
+            
+    
+
 
 
 

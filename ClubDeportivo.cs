@@ -63,33 +63,44 @@ namespace ClubDeportivo
         }
 
         // Inscribimos a un socio en una actividad deportiva
+        // Inscribimos a un socio en una actividad deportiva
         public string InscribirActividad(string nombreActividad, int numeroIdentificacionSocio)
         {
             Socio socio = BuscarSocio(numeroIdentificacionSocio);
             if (socio == null)
             {
-                return "SOCIO INEXISTENTE"; 
+                return "SOCIO INEXISTENTE";
             }
 
-            if (socio.GetActividadesInscritas().Count >= 3)
+            // Verificar si el socio ya está inscrito en la actividad
+            foreach (ActividadDeportiva act in socio.GetActividadesInscritas())
             {
-                return "TOPE DE ACTIVIDADES ALCANZADO"; 
+                if (act.GetNombre() == nombreActividad)
+                {
+                    return "El socio ya está inscrito en esta actividad.";
+                }
+            }
+
+            if (socio.GetActividadesInscritas().Count >= 2)
+            {
+                return "TOPE DE ACTIVIDADES ALCANZADO";
             }
 
             ActividadDeportiva actividad = actividades.Find(a => a.GetNombre() == nombreActividad);
             if (actividad == null)
             {
-                return "ACTIVIDAD INEXISTENTE"; 
+                return "ACTIVIDAD INEXISTENTE";
             }
 
             if (actividad.GetCuposDisponibles() <= 0)
             {
-                return "No hay cupos disponibles para esta actividad."; 
+                return "No hay cupos disponibles para esta actividad.";
             }
 
             socio.InscribirActividad(actividad);
             actividad.SetCuposDisponibles(actividad.GetCuposDisponibles() - 1);
-            return "INSCRIPCIÓN EXITOSA"; 
+            return "INSCRIPCIÓN EXITOSA";
         }
+
     }
 }
